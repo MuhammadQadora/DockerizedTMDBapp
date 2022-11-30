@@ -3,8 +3,8 @@ import requests
 from Secrets import api
 import imdb
 from MongoApi import MongoAPI
-import codecs
 import base64
+
 class tmdbDownload:
     def __init__(self):
         self.CONFIG_PATTERN = 'http://api.themoviedb.org/3/configuration?api_key={key}'
@@ -16,6 +16,8 @@ class tmdbDownload:
         self.max_size = 'original'
         self.name = ''
         self.mvid = ''
+        self.filename= ''
+
     def setName(self,name):
         self.name=name
     
@@ -37,17 +39,30 @@ class tmdbDownload:
             poster_urls.append(url)
         r = requests.get(poster_urls[0])
         filetype = r.headers['content-type'].split('/')[-1]
-        filename = 'poster_{0}.{1}'.format(self.name, filetype)
+        self.filename = 'poster_{0}.{1}'.format(self.name, filetype)
         ob = MongoAPI()
-        ob.uploadImage(r.content,filename)
+        ob.uploadImage(r.content,self.filename)
+
+    def ReturnToHtml(self):
+        obj = MongoAPI()
+        conv = obj.downloadImage(self.filename)
+        img = base64.b64encode(conv).decode('utf-8')
+        return img
+        
 
 
 
-
-def main(name):
+def downloadAndUpload(name):
     obj = tmdbDownload()
     obj.setName(name)
     obj.getMovieId()
     obj.downloadPoster()
 
-main('avengers')
+def downloadAndDisplay(name):
+    obj = tmdbDownload()
+    obj.setName(name)
+    obj.getMovieId()
+    obj.downloadPoster()
+    obj.ReturnToHtml()
+
+downloadAndDisplay('avengers')
