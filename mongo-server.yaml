@@ -1,5 +1,11 @@
 version: '3'
 services:
+  myapp:
+    build: .
+    container_name: myapp
+    ports:
+      - 5000:5000
+    
   mongodata:
     image: mongo
     container_name: mongodata
@@ -8,7 +14,8 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=
     ports:
       - 27017:27017
-  
+    depends_on:
+      - myapp
   mongo-express:
     image: mongo-express
     ports:

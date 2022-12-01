@@ -3,7 +3,7 @@ import gridfs
 
 class MongoAPI:
     def __init__(self):
-        self.client = pymongo.MongoClient("mongodb://localhost:27017/")
+        self.client = pymongo.MongoClient("mongodb://mongodata:27017/")
         self.DB = self.client['PosterDB']
         self.mycoll = self.DB['Images']
         self.fs = gridfs.GridFS(self.DB)
