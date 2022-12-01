@@ -63,6 +63,4 @@ def downloadAndDisplay(name):
     obj.setName(name)
     obj.getMovieId()
     obj.downloadPoster()
-    obj.ReturnToHtml()
-
-downloadAndDisplay('avengers')
+    return obj.ReturnToHtml()

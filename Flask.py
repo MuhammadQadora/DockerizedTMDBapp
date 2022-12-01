@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 from TMDBclass import downloadAndDisplay
 import json
+
 app = Flask(__name__)
 
 
@@ -10,11 +11,9 @@ def main():
 
 @app.route('/search', methods=['POST','GET'])
 def index():
-    data = request.data('name')
-    json.loads(data)
+    data = json.dumps(request.form.get('name'))
     result = downloadAndDisplay(data)
-
-    return render_template('index.html')
+    return render_template('index.html',result=result)
 
 
 app.run(debug=True, port=5000, host='0.0.0.0')
