@@ -15,7 +15,7 @@ and displays it to the user.
 How to use:
 
 * clone the Docker-Flask-Mongo-App repository
-* run Docker-compose -f mongo-server.yaml
+* run Docker-compose -f mongo-server.yaml up -d
 * got to your web browser and go to "localhost:5000" url
 * Enter movie name and submit
 * Movie Will be displayed
