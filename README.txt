@@ -1,3 +1,4 @@
+*** STILL WORKING ON IMPROVING THE APP *****
 This is a Dockerized app.
 The app downloads Movie Posters to its MongoDB database and then displays it to the user in his web browser.
 
