@@ -2,9 +2,6 @@
 This is a Dockerized app.
 The app downloads Movie Posters to its MongoDB database and then displays it to the user in his web browser.
 
-Important Notice:
-**** I have manualy uploaded the Secrets.py file whcih contains my APi key for you to test the app *****
-*** Keys should never be uploaded to a repository
 
 WorkFlow :
 
@@ -12,6 +9,10 @@ movie name is requested in browser ---> The flask web server activates the TMDBd
 ----> the TMDBdownloader activates The MongoAPI ----> MongoAPI downloads the poster to myapp's MongoDB -----> MongoAPI retrieves the poster from MongoDB
 and displays it to the user.
 
+- To get your own API:
+  * go to https://www.themoviedb.org/
+  * Rigester an account
+  * go to your profile --> Settings --> API --> request new API
 
 How to use:
 
